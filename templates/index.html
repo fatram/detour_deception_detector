@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Detour - Deception Detector</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}" />
+</head>
+{% block body %}
+<canvas id="canvas"></canvas>
+<div class="navbar">
+    <span>Detour</span>
+</div>
+<div class="content" id="content">
+    <div id="intro-text">
+        <span>I will try to analyze whether you're lying or telling the truth</span>
+    </div>
+    <div>
+        <button id="start-camera">Start Camera</button>
+    </div>
+    <div>
+        <video id="video" width="640" height="480" autoplay muted="muted"></video>
+    </div>
+    <div>
+        <button id="start-record">Start Recording</button>
+    </div>
+    <div>
+        <button id="stop-record">Stop Recording</button>
+    </div>
+    <div id="link-container">
+        <a id="download-video" download="clip.webm">Download Video</a>
+    </div>
+    <div id="form-container">
+        <form method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+                Upload file
+            </label>
+            <input id="file-upload" type="file"/>
+            <span id="file-name"></span>
+            <input type="file" name="file"/>
+            <input type="submit" id="analyze" value="Analyze"/>
+        </form>
+    </div>
+    <div id="verdict-container">
+    {% if verdict == "lie" %}
+        <p id="verdict-text">I think you might be lying...</p>
+    {% elif verdict == "truth" %}
+        <p id="verdict-text">I think you're telling the truth...</p>
+    {% endif %}
+    </div>
+</div>
+<div id="loading_screen" class="loader-container">
+    <div class="loader"></div>
+</div>
+<script src="{{ url_for('static', filename='js/app.js') }}" ></script>
+{% endblock %}
+</html>
