@@ -42,10 +42,7 @@ class Analyzer:
         self.sentiment = self.transcript_classifier.classify(dict([token, True] for token in custom_tokens))
         self.features.at[0, 'sentiment'] = 0 if self.sentiment == "Negative" else 1
 
-        try:
-            self.prosodies = myprosody.mysptotal("audio", r""+self.app_root+"/myprosody_old/myprosody")
-        except:
-            self.verdict = "failed to extract prosodic features because audio is not clear"
+        self.prosodies = myprosody.mysptotal("audio", r""+self.app_root+"/myprosody_old/myprosody")
 
         signal, sample_rate = librosa.load("static/myprosody_old/myprosody/dataset/audioFiles/" + "audio.wav", sr=44100)
 
