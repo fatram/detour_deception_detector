@@ -43,6 +43,7 @@ class Analyzer:
         self.features.at[0, 'sentiment'] = 0 if self.sentiment == "Negative" else 1
 
         self.prosodies = myprosody.mysptotal("audio", r""+self.app_root+"/myprosody_old/myprosody")
+        print(type(self.prosodies))
 
         signal, sample_rate = librosa.load("static/myprosody_old/myprosody/dataset/audioFiles/" + "audio.wav", sr=44100)
 
