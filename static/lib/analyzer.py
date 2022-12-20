@@ -43,10 +43,11 @@ class Analyzer:
         self.features.at[0, 'sentiment'] = 0 if self.sentiment == "Negative" else 1
 
         try:
-            self.prosodies = myprosody.mysptotal("audio", r""+self.app_root+"\myprosody_old\myprosody")
-            print(r""+self.app_root+"\myprosody_old\myprosody")
+            self.prosodies = myprosody.mysptotal("audio", r""+self.app_root+"/myprosody_old/myprosody")
         except:
             self.verdict = "failed to extract prosodic features because audio is not clear"
+        
+        if self.prosodies == None:
             return
 
         signal, sample_rate = librosa.load("static/myprosody_old/myprosody/dataset/audioFiles/" + "audio.wav", sr=44100)
