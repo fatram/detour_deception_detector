@@ -44,8 +44,10 @@ class Analyzer:
 
         try:
             self.prosodies = myprosody.mysptotal("audio", r""+self.app_root+"\myprosody_old\myprosody")
+            print(r""+self.app_root+"\myprosody_old\myprosody")
         except:
             self.verdict = "failed to extract prosodic features because audio is not clear"
+            return
 
         signal, sample_rate = librosa.load("static/myprosody_old/myprosody/dataset/audioFiles/" + "audio.wav", sr=44100)
 
