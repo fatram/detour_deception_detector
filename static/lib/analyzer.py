@@ -106,6 +106,8 @@ class Analyzer:
             else:
                 pos = 'a'
 
+            stop_words = stopwords.words("english")
+
             lemmatizer = WordNetLemmatizer()
             token = lemmatizer.lemmatize(token, pos)
 
